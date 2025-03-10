@@ -41,6 +41,12 @@ contract PixelMap {
         // HINT: Use nested loops to iterate through the dimensions
         
         // YOUR CODE HERE
+        for (uint i = 0; i < width; i++) {
+            pixelMap.push();
+            for (uint j = 0; j < height; j++) {
+                pixelMap[i].push(Pixel(255,255,255));
+            }
+        }
     }
 
     /**
@@ -56,8 +62,11 @@ contract PixelMap {
         // TODO: Implement the setPixel function
         // 1. Validate that x and y are within bounds
         // 2. Set the pixel at position (x,y) to the given RGB values
-        
+
         // YOUR CODE HERE
+        require (x < width && y < height , "Not within bounds");
+        require(width > 0 && height > 0, "Width and height must be greater than 0");
+        pixelMap[y][x] = Pixel(r,g,b);
     }
 
     /**
@@ -73,8 +82,9 @@ contract PixelMap {
         // 2. Return the RGB values of the pixel at position (x,y)
         
         // YOUR CODE HERE
+        require (x < width && y < height, "Not within bounds");
+        require(width > 0 && height > 0, "Width and height must be greater than 0");
         
-        // Replace this line with your implementation
-        return (0, 0, 0);
+        return (pixelMap[y][x].r, pixelMap[y][x].g, pixelMap[y][x].b);
     }
 }
