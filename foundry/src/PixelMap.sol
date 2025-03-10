@@ -40,7 +40,12 @@ contract PixelMap {
         // 2. Fill it with white pixels (r=255, g=255, b=255)
         // HINT: Use nested loops to iterate through the dimensions
         
-        // YOUR CODE HERE
+        for (uint i = 0; i < height; i++) {
+            pixelMap.push();
+            for (uint j = 0; j < width; j++) {
+                pixelMap[i].push(Pixel(255, 255, 255));
+            }
+        }
     }
 
     /**
@@ -57,7 +62,10 @@ contract PixelMap {
         // 1. Validate that x and y are within bounds
         // 2. Set the pixel at position (x,y) to the given RGB values
         
-        // YOUR CODE HERE
+        require(x < width, "Invalid x coordinate");
+        require(y < height, "Invalid y coordinate");
+
+        pixelMap[y][x] = Pixel(r, g, b);
     }
 
     /**
@@ -72,9 +80,10 @@ contract PixelMap {
         // 1. Validate that x and y are within bounds
         // 2. Return the RGB values of the pixel at position (x,y)
         
-        // YOUR CODE HERE
-        
-        // Replace this line with your implementation
-        return (0, 0, 0);
+        require(x < width, "Invalid x coordinate");
+        require(y < height, "Invalid y coordinate");
+
+        Pixel storage pixel = pixelMap[y][x];
+        return (pixel.r, pixel.g, pixel.b);
     }
 }
