@@ -102,46 +102,52 @@ contract PixelMapTest is Test {
     /**
      * @notice Test boundary conditions - X coordinate
      */
-    function testFail_invalidXCoordinate() public {
-        // Should fail since x >= width
+    function test_RevertWhen_InvalidXCoordinate() public {
+        // Should revert since x >= width
+        vm.expectRevert();
         pixelMap.setPixel(MAP_WIDTH, 5, 100, 100, 100);
     }
 
     /**
      * @notice Test boundary conditions - Y coordinate
      */
-    function testFail_invalidYCoordinate() public {
-        // Should fail since y >= height
+    function test_RevertWhen_InvalidYCoordinate() public {
+        // Should revert since y >= height
+        vm.expectRevert();
         pixelMap.setPixel(5, MAP_HEIGHT, 100, 100, 100);
     }
 
     /**
      * @notice Test boundary conditions for readPixel - X coordinate
      */
-    function testFail_readInvalidXCoordinate() public {
-        // Should fail since x >= width
+    function test_RevertWhen_ReadInvalidXCoordinate() public {
+        // Should revert since x >= width
+        vm.expectRevert();
         pixelMap.readPixel(MAP_WIDTH, 5);
     }
 
     /**
      * @notice Test boundary conditions for readPixel - Y coordinate
      */
-    function testFail_readInvalidYCoordinate() public {
-        // Should fail since y >= height
+    function test_RevertWhen_ReadInvalidYCoordinate() public {
+        // Should revert since y >= height
+        vm.expectRevert();
         pixelMap.readPixel(5, MAP_HEIGHT);
     }
 
     /**
      * @notice Test the constructor with invalid dimensions
      */
-    function testFail_zeroWidth() public {
+    function test_RevertWhen_ZeroWidth() public {
+        vm.expectRevert();
         new PixelMap(0, 10);
     }
 
     /**
      * @notice Test the constructor with invalid dimensions
      */
-    function testFail_zeroHeight() public {
+    function test_RevertWhen_ZeroHeight() public {
+        vm.expectRevert();
         new PixelMap(10, 0);
     }
 }
